@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page Schema Generator Version 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        legend {
+            font-weight: 600;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        label {
+            margin-top: 15px;
+            position: relative;
+            font-size: 1em;
+            color: #555;
+            font-weight: bold;
+        }
+        .tooltip {
+            position: absolute;
+            top: 0;
+            right: -25px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #007bff;
+        }
+        .tooltip-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            width: 250px;
+            top: 25px;
+            right: 0;
+            z-index: 1000;
+        }
+        .tooltip:hover .tooltip-content {
+            display: block;
+        }
+        input, textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .add-button {
+            background-color: #28a745;
+            width: auto;
+            margin-left: auto;
+            margin-top: 10px;
+        }
+        .add-button:hover {
+            background-color: #218838;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            font-weight: bold;
+        }
+        .input-group .input-container {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .input-group .input-container input {
+            margin-bottom: 5px;
+        }
+        .input-group .input-container .add-button {
+            width: auto;
+            display: block;
+            text-align: center;
+            margin-top: 5px;
+            margin-left: auto;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 15px;
+        }
+        .message {
+            text-align: center;
+            color: #28a745;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profile Page Schema Generator Version 2</h1>
+        <form id="schemaForm">
+            <fieldset>
+                <legend>Profile Page</legend>
+
+                <label for="personName">Person Name:
+                    <span class="tooltip">?
+                        <span class="tooltip-content">The name of the person that this profile page is about. Use their full name.</span>
+                    </span>
+                </label>
+                <input type="text" id="personName" name="personName" required>
+
+                <label for="description">Description:
+                    <span class="tooltip">?
+                        <span class="tooltip-content">A brief description or byline for the person. This might include their professional credentials or key roles.</span>
+                    </span>
+                </label>
+                <textarea id="description" name="description"></textarea>
+
+                <label for="jobTitle">Job Title:
+                    <span class="tooltip">?
+                        <span class="tooltip-content">The job title or position held by the person. This provides information about their role within the organization or in their professional capacity.</span>
+                    </span>
+                </label>
+                <input type="text" id="jobTitle" name="jobTitle">
+
+                <div class="input-group">
+                    <label>Awards:
+                        <span class="tooltip">?
+                            <span class="tooltip-content">Awards or recognitions received by the person. Include any significant awards relevant to their achievements.</span>
+                        </span>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" class="award" name="award" placeholder="Enter award">
+                    </div>
+                    <button type="button" id="addAwardButton" class="add-button">Add Another Award</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Alumni Of:
+                        <span class="tooltip">?
+                            <span class="tooltip-content">Educational institutions or organizations where the person is an alumnus. Include any notable affiliations.</span>
+                        </span>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" class="alumniOf" name="alumniOf" placeholder="Enter alumni">
+                    </div>
+                    <button type="button" id="addAlumniButton" class="add-button">Add Another Alumni</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Image URLs:
+                        <span class="tooltip">?
+                            <span class="tooltip-content">URLs to images associated with the person. These could be profile pictures, relevant images, etc.</span>
+                        </span>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" class="image" name="image" placeholder="Enter image URL">
+                    </div>
+                    <button type="button" id="addImageButton" class="add-button">Add Another Image</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Same As URLs:
+                        <span class="tooltip">?
+                            <span class="tooltip-content">URLs to external profiles or references related to the person. This could include social media profiles, personal websites, etc.</span>
+                        </span>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" class="sameAs" name="sameAs" placeholder="Enter URL">
+                    </div>
+                    <button type="button" id="addSameAsButton" class="add-button">Add Another URL</button>
+                </div>
+            </fieldset>
+
+            <div class="button-container">
+                <button type="submit">Generate Schema</button>
+            </div>
+            <h2>Generated Schema</h2>
+            <pre id="schemaOutput"></pre>
+            <button type="button" id="copyButton">Copy Schema</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('schemaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const personName = document.getElementById('personName').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const jobTitle = document.getElementById('jobTitle').value.trim();
+            const awards = Array.from(document.querySelectorAll('.award')).map(input => input.value.trim()).filter(value => value);
+            const alumniOf = Array.from(document.querySelectorAll('.alumniOf')).map(input => input.value.trim()).filter(value => value);
+            const images = Array.from(document.querySelectorAll('.image')).map(input => input.value.trim()).filter(value => value);
+            const sameAs = Array.from(document.querySelectorAll('.sameAs')).map(input => input.value.trim()).filter(value => value);
+
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "ProfilePage",
+                "mainEntity": {
+                    "@type": "Person",
+                    "name": personName,
+                    "description": description,
+                    "jobTitle": jobTitle,
+                    "award": awards,
+                    "alumniOf": alumniOf,
+                    "image": images,
+                    "sameAs": sameAs
+                }
+            };
+
+            const schemaOutput = JSON.stringify(schema, null, 2);
+            document.getElementById('schemaOutput').textContent = schemaOutput;
+            document.getElementById('message').textContent = 'Schema generated successfully!';
+        });
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const schemaOutput = document.getElementById('schemaOutput').textContent;
+            navigator.clipboard.writeText(schemaOutput).then(() => {
+                document.getElementById('message').textContent = 'Schema copied to clipboard!';
+            });
+        });
+
+        document.getElementById('addImageButton').addEventListener('click', function() {
+            const imageInput = document.createElement('input');
+            imageInput.type = 'text';
+            imageInput.className = 'image';
+            imageInput.name = 'image';
+            imageInput.placeholder = 'Enter image URL';
+            const container = this.previousElementSibling;
+            container.parentNode.insertBefore(imageInput, this);
+        });
+
+        document.getElementById('addSameAsButton').addEventListener('click', function() {
+            const sameAsInput = document.createElement('input');
+            sameAsInput.type = 'text';
+            sameAsInput.className = 'sameAs';
+            sameAsInput.name = 'sameAs';
+            sameAsInput.placeholder = 'Enter URL';
+            const container = this.previousElementSibling;
+            container.parentNode.insertBefore(sameAsInput, this);
+        });
+
+        document.getElementById('addAwardButton').addEventListener('click', function() {
+            const awardInput = document.createElement('input');
+            awardInput.type = 'text';
+            awardInput.className = 'award';
+            awardInput.name = 'award';
+            awardInput.placeholder = 'Enter award';
+            const container = this.previousElementSibling;
+            container.parentNode.insertBefore(awardInput, this);
+        });
+
+        document.getElementById('addAlumniButton').addEventListener('click', function() {
+            const alumniInput = document.createElement('input');
+            alumniInput.type = 'text';
+            alumniInput.className = 'alumniOf';
+            alumniInput.name = 'alumniOf';
+            alumniInput.placeholder = 'Enter alumni';
+            const container = this.previousElementSibling;
+            container.parentNode.insertBefore(alumniInput, this);
+        });
+    </script>
+</body>
+</html>
